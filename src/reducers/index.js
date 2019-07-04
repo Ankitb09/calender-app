@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-
+import userReducer from './userReducer';
+import remindersReducer from './eventsReducer';
 
 const rootReducer = combineReducers({
-    calenderDetails: () => { return 1 }
-
+    events: remindersReducer,
+    user: userReducer
 })
 
 export default rootReducer;

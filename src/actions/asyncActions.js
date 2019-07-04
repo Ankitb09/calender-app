@@ -1,5 +1,7 @@
 import * as actionTypes from './actionTypes';
 
+const ROOTURL = "http://localhost:4000";
+
 function httpAction(action) {
     const httpActionTemplate = {
         type: "",
@@ -14,9 +16,38 @@ function httpAction(action) {
 }
 
 
-export const getQuoteAction = () => {
+export const createEvent = () => {
     return httpAction({
         type: actionTypes.CREATE_EVENT,
-        endpoint: "http://localhost:4000/"
+        endpoint: ROOTURL
+    });
+}
+
+export const requestEvents = () => {
+    return httpAction({
+        type: actionTypes.FETCH_EVENT,
+        endpoint: `${ROOTURL}/reminders`
+    });
+};
+
+export const requestEventDates = (date="") => {
+    return httpAction({
+        type: actionTypes.FETCH_EVENT_DATES,
+        endpoint: `${ROOTURL}/dates`
+    });
+};
+
+
+export const editEvent = () => {
+    return httpAction({
+        type: actionTypes.EDIT_EVENT,
+        endpoint: ROOTURL
+    });
+}
+
+export const deleteEvent = () => {
+    return httpAction({
+        type: actionTypes.DELETE_EVENT,
+        endpoint: ROOTURL
     });
 }

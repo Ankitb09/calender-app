@@ -1,0 +1,37 @@
+{
+  "dates": [
+    {
+      "id": "01072019",
+      "month": 1,
+      "remindersId": "id"
+    },
+    {
+      "id": "01062019",
+      "month": 1,
+      "remindersId": "id"
+    }
+  ],
+  "reminders": [
+    {
+      "id": "1qwd",
+      "time": "time1",
+      "title": "d2e2e",
+      "description": "eofhefn",
+      "color": "red"
+    },
+    {
+      "id": "2",
+      "time": "time2",
+      "title": "dqde",
+      "description": ".....",
+      "color": "black"
+    },
+    {
+      "id": "3",
+      "title": "dqfe",
+      "time": "time3",
+      "description": ".....",
+      "color": "blue"
+    }
+  ]
+}

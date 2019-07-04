@@ -1,14 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import './scss/style.scss';
 import { Provider } from 'react-redux';
 import store from './store';
+import App from './components/App';
 
-const App = ({store}) => {
+const Root = ({store}) => {
     return (
         <Provider store={store}>
-            <div>eed</div>
+            <App/>
         </Provider>
     )
 };
 
-ReactDOM.render(<App store/>, document.getElementById('root'));
+ReactDOM.render(<Root store={store}/>, document.getElementById('root'));

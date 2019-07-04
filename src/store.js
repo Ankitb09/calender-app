@@ -10,11 +10,10 @@ const httpMiddleware = store => next => action => {
             method: actionInfo.verb,
             body: actionInfo.payload || null
         };
-
+        console.log(actionInfo.type)
         next({
             type: actionInfo.type
         });
-
         fetch(actionInfo.endpoint, fetchOptions)
             .then(response => response.json())
             .then(data => next({
@@ -29,7 +28,7 @@ const httpMiddleware = store => next => action => {
         return next(action);
     }
 }
-console.log(rootReducer)
+
 const store = createStore(rootReducer, applyMiddleware(httpMiddleware));
 
 export default store;
