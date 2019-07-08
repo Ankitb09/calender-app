@@ -3,6 +3,7 @@ import dateFns from "date-fns";
 import { connect } from 'react-redux';
 import ReminderList from '../components/ReminderList';
 import AddEditForm from '../components/AddEditForm';
+import { postEvents } from '../actions/asyncActions';
 
 class Day extends Component {
     constructor(props) {
@@ -28,30 +29,36 @@ class Day extends Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault();
-        e.stopPropagation();
+        let formData = {}
         const data = new FormData(e.target);
-        console.log(data.get('time'))
+        for (var pair of data.entries()) {
+            formData[pair[0]] = pair[1]
+        }
+
+        this.props.postEvents(formData).then(() => {
+            this.props.updateDates
+        });
     }
 
     render() {
         let { selectedDate, monthStart, formattedDate, day, reminders } = this.props;
         return (
             <React.Fragment>
-            <div className={`col cell ${
-                !dateFns.isSameMonth(day, monthStart)
-                    ? "disabled"
-                    : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
-                }`}
-                key={day}
-                onClick={() => this.handleClick(dateFns.parse(day))}
-            >
-                <span className="number">{formattedDate}</span>
-                <span className="bg">{formattedDate}</span>
+                <div className={`col cell ${
+                    !dateFns.isSameMonth(day, monthStart)
+                        ? "disabled"
+                        : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
+                    }`}
+                    key={day}
+                    onClick={() => this.handleClick(dateFns.parse(day))}
+                >
+                    <span className="number">{formattedDate}</span>
+                    <span className="bg">{formattedDate}</span>
 
-                {reminders.length > 0 && <ReminderList list={reminders} />}
-                
-            </div>
-                {this.state.showModal && <AddEditForm onFormSubmit={this.handleFormSubmit} />}
+                    {reminders.length > 0 && <ReminderList list={reminders} />}
+
+                </div>
+                {this.state.showModal && <AddEditForm onClose={this.handleClose} onFormSubmit={this.handleFormSubmit} />}
             </React.Fragment>
         )
     }
@@ -64,4 +71,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Day);
+export default connect(mapStateToProps, { postEvents })(Day);

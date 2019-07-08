@@ -37,6 +37,16 @@ export const requestEventDates = (date="") => {
     });
 };
 
+export const postEvents = (data) => {
+   
+    return httpAction({
+        type: actionTypes.POST_EVENTS,
+        verb: "POST",
+        payload: data,
+        endpoint: `${ROOTURL}/reminders`
+    });
+};
+
 
 export const editEvent = () => {
     return httpAction({

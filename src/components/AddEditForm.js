@@ -22,7 +22,7 @@ const renderModalBody = (props) => {
             <input type="text" defaultValue="" name="description" placeholder="Add Event Description (max 300 characters)" className="form-control" />
         </div>
         <div className="form-group">
-            <input type="time" defaultValue="12:00" name="time" className="form-control" />
+            <input type="time" defaultValue="14:45" name="time" className="form-control" />
         </div>
         <div className="form-group">
             <input type="color" defaultValue="#ff0000" name="color" className="form-control" />
